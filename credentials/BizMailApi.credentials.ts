@@ -1,6 +1,6 @@
 import {
-	IAuthenticateGeneric,
-	ICredentialTestRequest,
+	/*	IAuthenticateGeneric,
+		ICredentialTestRequest,*/
 	ICredentialType,
 	INodeProperties,
 } from 'n8n-workflow';
@@ -11,27 +11,36 @@ export class BizMailApi implements ICredentialType {
 	documentationUrl = 'https://help.bizfly.vn/tuy-chon-cai-dat-api-sdk-n645.html';
 	properties: INodeProperties[] = [
 		{
-			displayName: 'Token',
-			name: 'token',
-			type: 'string',
-			default: '',
-			typeOptions: {
-				password: true,
-			}
-		},
-		{
-			displayName: 'Domain',
-			name: 'domain',
+			displayName: 'Base URL',
+			name: 'baseUrl',
 			type: 'string',
 			default: 'https://apicampaign.bizfly.vn',
+			required: true,
 		},
+		{
+			displayName: 'App Key',
+			name: 'app_key',
+			type: 'string',
+			typeOptions: {password: true},
+			default: '',
+			required: true,
+		},
+		{
+			displayName: 'Project Token',
+			name: 'project_token',
+			type: 'string',
+			typeOptions: {password: true},
+			default: '',
+			required: true,
+		}
 	];
+
 
 	// This allows the credential to be used by other parts of n8n
 	// stating how this credential is injected as part of the request
 	// An example is the Http Request node that can make generic calls
 	// reusing this credential
-	authenticate: IAuthenticateGeneric = {
+	/*authenticate: IAuthenticateGeneric = {
 		type: 'generic',
 		properties: {
 			headers: {
@@ -45,7 +54,9 @@ export class BizMailApi implements ICredentialType {
 		request: {
 			method: 'POST',
 			baseURL: '={{$credentials?.domain}}',
-			url: '/check-auth',
+			url: '/api/auth/check',
 		},
-	};
+	};*/
 }
+
+export {testCredentials} from './BizMailApi.credentials.test';

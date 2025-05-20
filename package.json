@@ -1,19 +1,21 @@
 {
-  "name": "n8n-nodes-<...>",
+  "name": "n8n-nodes-bizmail",
   "version": "0.1.0",
-  "description": "",
+  "description": "Custom n8n nodes for Bizmail",
   "keywords": [
-    "n8n-community-node-package"
+    "n8n-community-node-package",
+    "n8n",
+    "bizmail"
   ],
   "license": "MIT",
-  "homepage": "",
+  "homepage": "https://github.com/protuanna/n8n-bizmail",
   "author": {
-    "name": "",
-    "email": ""
+    "name": "Bizfly",
+    "email": "tuannguyenanh@vccorp.vn"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/<...>/n8n-nodes-<...>.git"
+    "url": "https://github.com/protuanna/n8n-bizmail.git"
   },
   "engines": {
     "node": ">=20.15"
@@ -33,15 +35,14 @@
   "n8n": {
     "n8nNodesApiVersion": 1,
     "credentials": [
-      "dist/credentials/ExampleCredentialsApi.credentials.js",
-      "dist/credentials/HttpBinApi.credentials.js"
+      "dist/credentials/*.credentials.js"
     ],
     "nodes": [
-      "dist/nodes/ExampleNode/ExampleNode.node.js",
-      "dist/nodes/HttpBin/HttpBin.node.js"
+      "dist/nodes/**/*.node.js"
     ]
   },
   "devDependencies": {
+    "@types/node": "^22.15.18",
     "@typescript-eslint/parser": "~8.32.0",
     "eslint": "^8.57.0",
     "eslint-plugin-n8n-nodes-base": "^1.16.3",
@@ -51,5 +52,9 @@
   },
   "peerDependencies": {
     "n8n-workflow": "*"
+  },
+  "dependencies": {
+    "axios": "^1.9.0",
+    "crypto": "^1.0.1"
   }
 }
