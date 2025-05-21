@@ -1,5 +1,4 @@
 import {ICredentialTestFunctions, INodeCredentialTestResult} from 'n8n-workflow';
-import crypto from 'crypto';
 // @ts-ignore
 import {OptionsWithUri} from 'request';
 
@@ -8,28 +7,20 @@ export async function testCredentials(
 	credentials: {
 		app_key: string;
 		project_token: string;
-		api_secret: string;
+		//api_secret: string;
 		baseUrl: string;
 	}
 ): Promise<INodeCredentialTestResult> {
 	try {
-		const method = 'GET';
-		const path = '/check-auth';
-		const mergeStr = '|';
-
-		const rawString = mergeStr + [method, path, credentials.app_key].join(mergeStr) + mergeStr;
-		const signature = crypto
-			.createHmac('sha512', credentials.api_secret)
-			.update(rawString)
-			.digest('hex');
-
+		const method = 'POST';
+		const path = '/api/customer/check-auth';
 		const options: OptionsWithUri = {
 			method,
 			uri: `${credentials.baseUrl}${path}`,
 			body: {
 				app_key: credentials.app_key,
 				project_token: credentials.project_token,
-				signature: signature,
+				source: 'n8n-workflow'
 			},
 			json: true,
 		};
