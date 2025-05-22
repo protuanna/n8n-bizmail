@@ -8,11 +8,11 @@ import {
 	NodeConnectionType
 } from 'n8n-workflow';
 
-export class BizMailNode implements INodeType {
+export class BizMail implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'BizMail',
 		name: 'bizMail',
-		icon: 'file:bizmail.svg', // Optional: Add a custom icon in the nodes/ directory
+		icon: 'file:bizmail_icon.svg', // Optional: Add a custom icon in the nodes/ directory
 		group: ['transform'],
 		version: 1,
 		description: 'Interact with BizMail API',
@@ -48,7 +48,7 @@ export class BizMailNode implements INodeType {
 				displayOptions: {
 					show: {
 						resource: [
-							'Automation'
+							'automation'
 						],
 					},
 				},
@@ -62,11 +62,83 @@ export class BizMailNode implements INodeType {
 					{
 						name: 'Update Subscriber',
 						value: 'update',
-						action: 'Create new subscriber for automation',
-						description: 'Create new subscriber for automation',
+						action: 'Update subscriber for automation',
+						description: 'Update subscriber for automation',
 					},
 				],
 				default: 'create',
+			},
+			{
+				displayName: 'Operation',
+				name: 'operation',
+				type: 'options',
+				noDataExpression: true,
+				displayOptions: {
+					show: {
+						resource: [
+							'autoresponder'
+						],
+					},
+				},
+				options: [
+					{
+						name: 'Create Subscriber',
+						value: 'create',
+						action: 'Create new subscriber for autoresponder',
+						description: 'Create new subscriber for autoresponder',
+					},
+					{
+						name: 'Update Subscriber',
+						value: 'update',
+						action: 'Update subscriber for autoresponder',
+						description: 'Update subscriber for autoresponder',
+					},
+				],
+				default: 'create',
+			},
+			{
+				displayName: 'Operation',
+				name: 'operation',
+				type: 'options',
+				noDataExpression: true,
+				displayOptions: {
+					show: {
+						resource: [
+							'contact'
+						],
+					},
+				},
+				options: [
+					{
+						name: 'Create Contact',
+						value: 'create',
+						action: 'Create new contact',
+						description: 'Create new contact',
+					}
+				],
+				default: 'create',
+			},
+			{
+				displayName: 'Operation',
+				name: 'operation',
+				type: 'options',
+				noDataExpression: true,
+				displayOptions: {
+					show: {
+						resource: [
+							'send_mail'
+						],
+					},
+				},
+				options: [
+					{
+						name: 'Send Mail',
+						value: 'send',
+						action: 'Send a new email',
+						description: 'Send a new email',
+					}
+				],
+				default: 'send',
 			},
 			{
 				displayName: 'Automation Name or ID',
@@ -79,11 +151,48 @@ export class BizMailNode implements INodeType {
 				},
 				displayOptions: {
 					show: {
-						resource: ['import_automation'],
+						resource: ['automation'],
 					},
 				},
 				default: '',
-			}
+			},
+			{
+				displayName: 'Merge Fields',
+				name: 'mergeFields',
+				type: 'fixedCollection',
+				typeOptions: {
+					multipleValues: true,
+				},
+				default: {},
+				options: [
+					{
+						name: 'field',
+						displayName: 'Field',
+						values: [
+							{
+								displayName: 'Field Name',
+								name: 'fieldName',
+								type: 'options',
+								options: [
+									{ name: 'First Name', value: 'first_name' },
+									{ name: 'Last Name', value: 'last_name' },
+									{ name: 'Email', value: 'email' },
+									{ name: 'Phone', value: 'phone' },
+								],
+								default: 'first_name',
+							},
+							{
+								displayName: 'Value',
+								name: 'value',
+								type: 'string',
+								default: '',
+								placeholder: 'Enter value',
+							},
+						],
+					},
+				],
+			},
+
 
 			// Parameters for Send Message
 			/*{
@@ -136,7 +245,8 @@ export class BizMailNode implements INodeType {
 			async getListAutomation(this: ILoadOptionsFunctions) {
 				const returnData: INodePropertyOptions[] = [];
 				const resource = this.getCurrentNodeParameter('resource') as string
-				if (resource === 'import_automation') {
+				//const operation = this.getCurrentNodeParameter('operation') as string
+				if (resource === 'automation') {
 					const credentials = await this.getCredentials('bizfly-Api') // Tên này phải trùng với trong phần `credentials` đã khai báo
 					// Gọi API hoặc trả về theo resource
 					const method = 'GET'

@@ -3,8 +3,8 @@ import { httpVerbFields, httpVerbOperations } from './HttpVerbDescription';
 
 export class HttpBin implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'BizMail',
-		name: 'bizMail',
+		displayName: 'HttpBin',
+		name: 'httpBin',
 		icon: 'file:httpbin.svg',
 		group: ['transform'],
 		version: 1,
