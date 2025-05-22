@@ -48,26 +48,25 @@ export class BizMailNode implements INodeType {
 				displayOptions: {
 					show: {
 						resource: [
-							'Automation',
-							'Autoresponder',
-							'Contact',
+							'Automation'
 						],
 					},
 				},
 				options: [
 					{
-						name: 'Get',
-						value: 'get',
-						action: 'Get Mars Rover photos',
-						description: 'Get photos from the Mars Rover',
-						routing: {
-							request: {
-								method: 'GET',
-							},
-						},
+						name: 'Create Subscriber',
+						value: 'create',
+						action: 'Create new subscriber for automation',
+						description: 'Create new subscriber for automation',
+					},
+					{
+						name: 'Update Subscriber',
+						value: 'update',
+						action: 'Create new subscriber for automation',
+						description: 'Create new subscriber for automation',
 					},
 				],
-				default: 'get',
+				default: 'create',
 			},
 			{
 				displayName: 'Automation Name or ID',
