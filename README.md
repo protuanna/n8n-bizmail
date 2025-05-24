@@ -1,46 +1,117 @@
-![Banner image](https://user-images.githubusercontent.com/10284570/173569848-c624317f-42b1-45a6-ab09-f0ea3c247648.png)
+# n8n-nodes-bizmail
 
-# n8n-nodes-starter
+This is a custom [n8n](https://n8n.io) node that integrates with [Bizfly Mail](https://bizfly.vn/giai-phap/bizfly-email.html), enabling you to send emails, manage automations, and handle contacts directly within your n8n workflows.
 
-This repo contains example nodes to help you get started building your own custom integrations for [n8n](n8n.io). It includes the node linter and other dependencies.
+---
 
-To make your custom node available to the community, you must create it as an npm package, and [submit it to the npm registry](https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry).
+## Features
+
+- **Send Mail**: Dispatch emails using Bizfly Mail's API.
+- **Automation**: Trigger and manage email automation workflows.
+- **Contact Management**: Add or update contacts in your Bizfly Mail lists.
+
+---
 
 ## Prerequisites
 
-You need the following installed on your development machine:
+Before using this node, ensure you have:
 
-* [git](https://git-scm.com/downloads)
-* Node.js and pnpm. Minimum version Node 20. You can find instructions on how to install both using nvm (Node Version Manager) for Linux, Mac, and WSL [here](https://github.com/nvm-sh/nvm). For Windows users, refer to Microsoft's guide to [Install NodeJS on Windows](https://docs.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-windows).
-* Install n8n with:
-  ```
-  npm install n8n -g
-  ```
-* Recommended: follow n8n's guide to [set up your development environment](https://docs.n8n.io/integrations/creating-nodes/build/node-development-environment/).
+- An active [Bizfly Mail](https://bizfly.vn/giai-phap/bizfly-email.html) account.
+- Your `app_key` and `project_token` from Bizfly Mail.
+- [n8n](https://n8n.io) installed (version 0.200.0 or higher is recommended).
 
-## Using this starter
+---
 
-These are the basic steps for working with the starter. For detailed guidance on creating and publishing nodes, refer to the [documentation](https://docs.n8n.io/integrations/creating-nodes/).
+## Installation
 
-1. [Generate a new repository](https://github.com/n8n-io/n8n-nodes-starter/generate) from this template repository.
-2. Clone your new repo:
-   ```
-   git clone https://github.com/<your organization>/<your-repo-name>.git
-   ```
-3. Run `npm i` to install dependencies.
-4. Open the project in your editor.
-5. Browse the examples in `/nodes` and `/credentials`. Modify the examples, or replace them with your own nodes.
-6. Update the `package.json` to match your details.
-7. Run `npm lint` to check for errors or `npm lintfix` to automatically fix errors when possible.
-8. Test your node locally. Refer to [Run your node locally](https://docs.n8n.io/integrations/creating-nodes/test/run-node-locally/) for guidance.
-9. Replace this README with documentation for your node. Use the [README_TEMPLATE](README_TEMPLATE.md) to get started.
-10. Update the LICENSE file to use your details.
-11. [Publish](https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry) your package to npm.
+### Via npm
 
-## More information
+To install the node globally:
 
-Refer to our [documentation on creating nodes](https://docs.n8n.io/integrations/creating-nodes/) for detailed information on building your own nodes.
+```bash
+npm install -g n8n-nodes-bizmail
+```
+
+To install the node locally within your n8n project:
+
+```bash
+npm install n8n-nodes-bizmail
+```
+
+### Linking for Development
+
+If you're developing or modifying the node:
+
+```bash
+git clone https://github.com/protuanna/n8n-nodes-bizmail.git
+cd n8n-nodes-bizmail
+npm install
+npm run build
+npm link
+```
+
+Then, in your n8n installation directory:
+
+```bash
+npm link n8n-nodes-bizmail
+```
+
+Restart n8n to apply the changes.
+
+---
+
+## Usage
+
+### Credentials Setup
+
+Before using the node, set up your Bizfly Mail credentials in n8n:
+
+1. Go to **Credentials** in n8n.
+2. Click **New Credential** and select **Bizfly Mail API**.
+3. Enter your `app_key`, `project_token`, and `baseUrl`.
+4. Save the credentials.
+
+### Node Parameters
+
+- **From Email Name or ID**: Enter in the format `Name <email@example.com>`.
+- **To Email**: Recipient's email address.
+- **Bcc Email**: Blind carbon copy recipients (comma-separated).
+- **Cc Email**: Carbon copy recipients (comma-separated).
+- **Title**: Email subject.
+- **HTML Content**: Body of the email in HTML.
+- **Attachments Link**: URLs to attachments (comma-separated).
+
+---
+
+## Development
+
+To contribute or modify the node:
+
+1. Fork the repository.
+2. Create a new branch for your changes.
+3. Make changes and ensure code quality:
+
+```bash
+npm run lint
+```
+
+4. Build the project:
+
+```bash
+npm run build
+```
+
+5. Test your changes within n8n.
+6. Submit a pull request with a clear description.
+
+---
 
 ## License
 
-[MIT](https://github.com/n8n-io/n8n-nodes-starter/blob/master/LICENSE.md)
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+## Acknowledgments
+
+This node is based on the [n8n-nodes-starter](https://github.com/n8n-io/n8n-nodes-starter) template by the n8n community.

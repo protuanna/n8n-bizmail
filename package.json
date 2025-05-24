@@ -8,14 +8,14 @@
     "bizmail"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/protuanna/n8n-bizmail",
+  "homepage": "https://github.com/protuanna/n8n-nodes-bizmail",
   "author": {
     "name": "Bizfly",
     "email": "tuannguyenanh@vccorp.vn"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/protuanna/n8n-bizmail.git"
+    "url": "https://github.com/protuanna/n8n-nodes-bizmail.git"
   },
   "engines": {
     "node": ">=20.15"
@@ -27,7 +27,7 @@
     "format": "prettier nodes credentials --write",
     "lint": "eslint nodes credentials package.json",
     "lintfix": "eslint nodes credentials package.json --fix",
-    "prepublishOnly": "npm build && npm lint -c .eslintrc.prepublish.js nodes credentials package.json"
+    "prepublishOnly": "npm run build && npm run lint -c .eslintrc.prepublish.js nodes credentials package.json"
   },
   "files": [
     "dist"
