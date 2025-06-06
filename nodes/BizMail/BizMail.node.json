@@ -1,0 +1,21 @@
+{
+	"node": "n8n-nodes-base.BizMail",
+	"nodeVersion": "1.0",
+	"codexVersion": "1.0",
+	"categories": [
+		"Productivity",
+		"Marketing & Content"
+	],
+	"resources": {
+		"credentialDocumentation": [
+			{
+				"url": "https://help.bizfly.vn/tuy-chon-cai-dat-api-sdk-n645.html"
+			}
+		],
+		"primaryDocumentation": [
+			{
+				"url": "https://help.bizfly.vn/tuy-chon-cai-dat-api-sdk-n645.html"
+			}
+		]
+	}
+}
