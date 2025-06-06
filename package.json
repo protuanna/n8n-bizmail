@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-bizmail",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Custom n8n nodes for Bizmail",
   "keywords": [
     "n8n-community-node-package",
